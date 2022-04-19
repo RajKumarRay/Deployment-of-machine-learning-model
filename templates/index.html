@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+    ::placeholder {
+        
+        /* Firefox, Chrome, Opera */
+        color: rgb(234, 234, 243);
+    }
+</style>
+  <!-- <style>
+    body {
+      background-color: #b8b7b7af;
+      background-image: url("https://bernardmarr.com/wp-content/uploads/2021/08/Should-I-Choose-Machine-Learning-or-Big-Data.jpg");
+      background-size: cover;
+      padding: .2rem 0;
+      background-repeat: no-repeat;
+    }
+
+    .formclass {
+      display: flex;
+      flex-direction: column;
+      width: 20rem;
+      gap: 1rem;
+    }
+
+    .backdrop {
+      position: absolute;
+      background-color: black;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    .login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    input {
+      background-color: aliceblue;
+      border: none;
+      font-size: 1.05rem;
+      padding: 8px 4px;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 8px 1rem;
+      border: none;
+      background-color: #582cd1;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    h1 {
+      color: white;
+      font-size: 2.3rem;
+      font-family: sans-serif;
+    }
+    .result{
+      background-color: beige;
+      padding: 0.5rem 10px;
+    }
+  </style> -->
+
+</head>
+
+<body>
+  <div class="login">
+    <h1>Predict Salary Analysis</h1>
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post" class="formclass" id="formid">
+      <input type="text" name="YEAR" placeholder="YEAR" required="required" />
+      <input type="text" name="Present_Price" placeholder="Present_Price" required="required" />
+      <input type="text" name="Kms_Driven" placeholder="Kms_Driven" required="required" />
+
+      <!-- <input type="text" name="Fuel_Type" placeholder="Fuel_Type" required="required" /> -->
+      <select name="Fuel_Type" class="Input" id=""  style="background: rgba(0,0,0,0.3); color:#fff">
+        <option disabled selected style=" color: rgb(117, 117, 117)">Fuel_Type</option>
+        <option value="0" >Petrol</option>
+        <option value="1">Diesel</option>
+        <option value="2">CNG</option>
+      </select>
+
+      <select name="Seller_Type" class="Input" id=""  style="background: rgba(0,0,0,0.3); color:#fff">
+        <option disabled selected style=" color: rgb(117, 117, 117)">Seller_Type</option>
+        <option value="0" >Dealer</option>
+        <option value="1">Individual</option>
+      </select>
+
+      <select name="Transmission" class="Input" id=""  style="background: rgba(0,0,0,0.3); color:#fff">
+        <option disabled selected style=" color: rgb(117, 117, 117)">Transmission</option>
+        <option value="0" >Manual</option>
+        <option value="1">Automatic</option>
+      </select>
+      <!-- <input type="text" name="Seller_Type" placeholder="Seller_Type" required="required" /> -->
+      <!-- <input type="text" name="Transmission" placeholder="Transmission" required="required" /> -->
+      <input type="text" name="Owner" placeholder="Owner" required="required" />
+
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+      <div class="backdrop"></div>
+    </form>
+
+    <br>
+    <br>
+    <!-- <div class="result"> -->
+
+    {{ prediction_text }}
+    <!-- </div> -->
+
+  </div>
+
+
+</body>
+
+</html>
